@@ -1,3 +1,6 @@
+close all 
+clear all
+
 xmin = 0;
 xmax = 5;
 nx = 51;
@@ -27,10 +30,10 @@ end
 
 figure(1)
 contourf(X, Y,infa)
-title('infa formula - general sheet')
+%title('infa formula - general sheet')
 colorbar
 
 figure(2)
 contourf(X, Y,infb)
-title('infb formula - general sheet')
+%title('infb formula - general sheet')
 colorbar
