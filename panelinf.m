@@ -9,7 +9,7 @@ vt = [xb-xa, yb-ya];
 ut = vt/norm(vt);
 
 %Getting normal unit vector (by deducting orthogonal vector from dot
-%product
+%product)
 
 vn = [-(yb-ya), xb - xa];
 un = vn/norm(vn);
