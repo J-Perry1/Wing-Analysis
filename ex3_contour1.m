@@ -8,11 +8,12 @@ ymin = 0;
 ymax = 4;
 ny = 41;
 del = 1.5;
-nv = 100;
+nv = 100; %resolution of 100 gives artefact for infa - suggest 500
 xa = 4.1;
 ya = 1.3;
 xb = 2.2;
 yb = 2.9;
+
 for i = 1:nx
     
     for j = 1:ny
@@ -23,17 +24,59 @@ for i = 1:nx
         %Calculating infa and infb using the external function
         [infa(i,j), infb(i,j)] = panelinf(del, xa, ya, xb, yb, X(i,j), Y(i,j));
         
+        [Xs, Ys] = unit_vect_panel(xa, ya, xb, yb, X(i,j), Y(i,j));
+        psi_a(i,j) = 0; 
+        for k = 0:nv
+            L = k*(del/nv);
+            gamx = 1 - k * (1/nv); %vulnerable to error
+            gam = gamx * (del/nv);
+            if abs(Ys) < 1e-19 
+                Yin = 1e-19;
+            else
+                Yin = Ys;
+            end
+            tempor_psi = psipv(L, 0, gam, Xs, Yin);
+            psi_a(i,j) = psi_a(i,j) + tempor_psi;
+            
+        end
+        
+        psi_b(i,j) = 0;
+        for k = 0:nv
+            L = k*del/nv;
+            gamx = k * (1/nv); %vulnerable to error
+            gam = gamx * (del/nv);
+            if abs(Ys) < 1e-19
+                Yin = 1e-19;
+            else
+                Yin = Ys;
+            end
+            tempor_psi = psipv(L, 0, gam, Xs, Yin);
+            psi_b(i,j) = psi_b(i,j) + tempor_psi;
+        end
+        
     end
     
 end
+
+
 %c = -0.15:0.05:0.15;
 
 figure(1)
 contourf(X, Y,infa)
-%title('infa formula - general sheet')
+title('infa formula - general sheet')
 colorbar
 
 figure(2)
 contourf(X, Y,infb)
-%title('infb formula - general sheet')
+title('infb formula - general sheet')
+colorbar
+
+figure(3)
+contourf(X, Y,psi_a)
+title('infa discrete vortex approximation general sheet')
+colorbar
+
+figure(4)
+contourf(X, Y,psi_b);
+title('infb discrete vortex approximation general sheet')
 colorbar
