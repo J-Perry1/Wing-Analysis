@@ -1,4 +1,4 @@
-function [infa,infb] = panelinf(del, xa, ya, xb, yb, x, y)
+function [infa,infb] = panelinf(xa, ya, xb, yb, x, y)
 %This function calculates influence coefficients a and b from a general vortex sheet using the previous...
 %function refpaninf
 
@@ -13,9 +13,10 @@ ut = vt/norm(vt);
 
 vn = [-(yb-ya), xb - xa];
 un = vn/norm(vn);
-
+ra = [xb-xa, yb-ya];
 %Define a position vector and new coordinates
 r = [x-xa, y-ya];
+del = norm(ra);
 X = dot(r, ut);
 Y = dot(r,un);
 %Invoke the refpaninf function using the new cooridantes

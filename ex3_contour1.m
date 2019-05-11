@@ -7,12 +7,13 @@ nx = 51;
 ymin = 0;
 ymax = 4;
 ny = 41;
-del = 1.5;
-nv = 100; %resolution of 100 gives artefact for infa - suggest 500
+nv = 500; %resolution of 100 gives artefact for infa - suggest 500
 xa = 4.1;
 ya = 1.3;
 xb = 2.2;
 yb = 2.9;
+del = [xb-xa, yb-ya];
+del = norm(del);
 
 for i = 1:nx
     
@@ -22,7 +23,7 @@ for i = 1:nx
         X(i,j) = xmin  + (i-1) * (xmax-xmin)/(nx-1);
         Y(i,j) = ymin  + (j-1) * (ymax-ymin)/(ny-1);
         %Calculating infa and infb using the external function
-        [infa(i,j), infb(i,j)] = panelinf(del, xa, ya, xb, yb, X(i,j), Y(i,j));
+        [infa(i,j), infb(i,j)] = panelinf(xa, ya, xb, yb, X(i,j), Y(i,j));
         
         [Xs, Ys] = unit_vect_panel(xa, ya, xb, yb, X(i,j), Y(i,j));
         psi_a(i,j) = 0; 
