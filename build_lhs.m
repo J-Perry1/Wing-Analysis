@@ -1,5 +1,5 @@
 function lhsmat = build_lhs(xs,ys)
-%UNTITLED2 Summary of this function goes here
+%build_lhs function to build A matrix for equation 9
 %   Detailed explanation goes here
 np = length(xs) -1;
 psip = zeros(np,np+1);

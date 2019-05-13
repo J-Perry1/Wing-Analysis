@@ -11,7 +11,7 @@ theta = (0:np)*2*pi/np;
 xs = cos(theta);
 ys = sin(theta);
 gammac = -2*sin(theta);
-alpha = 0.2;
+alpha = 0;
 
 A = build_lhs(xs,ys);
 b = build_rhs(xs,ys,alpha);
@@ -21,4 +21,4 @@ theta_plot = theta/pi;
 
 figure 
 plot(theta_plot,gam)
-axis([0 2 -2.5 2.5])
+%axis([0 2 -2.5 2.5])

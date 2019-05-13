@@ -1,5 +1,5 @@
 function rhsvec = build_rhs(xs,ys,alpha)
-%UNTITLED5 Summary of this function goes here
+%build_rhs function to build b matrix of equation 9
 %   Detailed explanation goes here
 np = length(xs)-1;
 psifs = zeros(np,1);
