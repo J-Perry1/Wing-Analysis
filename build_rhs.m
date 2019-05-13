@@ -6,8 +6,9 @@ psifs = zeros(np,1);
 rhsvec = zeros(np+1,1);
 for i = 1:np+1
     psifs(i) = ys(i)*cos(alpha)-xs(i)*sin(alpha);
-    if i < np 
-        rhsvec(i) = psifs(i+1) - psifs(i);
-    end
 end
 
+for i = 1:np-1 
+    rhsvec(i) = psifs(i+1) - psifs(i);
+end
+end

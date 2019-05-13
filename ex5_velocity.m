@@ -21,4 +21,4 @@ theta_plot = theta/pi;
 
 figure 
 plot(theta_plot,gam)
-%axis([0 2 -2.5 2.5])
+axis([0 2 -2.5 2.5])
