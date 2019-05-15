@@ -12,7 +12,7 @@ theta = (0:np)*2*pi/np;
 xs = cos(theta);
 ys = sin(theta);
 gammac = -2*sin(theta);
-alpha = 0.8; %angle of attack
+alpha = 0; %angle of attack
 
 A = build_lhs(xs,ys);
 b = build_rhs(xs,ys,alpha);

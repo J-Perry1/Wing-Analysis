@@ -58,21 +58,21 @@ end
 c = -0.15:0.05:0.15;
 
 figure(1)
-contourf(X, Y,infa,c)
-title('infa formula')
+contour(X, Y,infa,c)
+%title('infa formula')
 colorbar
 
 figure(2)
-contourf(X, Y,psi_a, c)
-title('infa discrete vortex approximation')
+contour(X, Y,psi_a, c)
+%title('infa discrete vortex approximation')
 colorbar
 
 figure(3)
-contourf(X, Y,infb, c)
-title('infb formula')
+contour(X, Y,infb, c)
+%title('infb formula')
 colorbar
 
 figure(4)
-contourf(X, Y,psi_b, c);
-title('infb discrete vortex approximation')
+contour(X, Y,psi_b, c);
+%title('infb discrete vortex approximation')
 colorbar
