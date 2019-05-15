@@ -7,7 +7,7 @@ nx = 51;
 ymin = 0;
 ymax = 4;
 ny = 41;
-nv = 500; %resolution of 100 gives artefact for infa - suggest 500
+nv = 100; %resolution of 100 gives artefact for infa - suggest 500
 xa = 4.1;
 ya = 1.3;
 xb = 2.2;
@@ -64,20 +64,36 @@ end
 
 figure(1)
 contour(X, Y,infa)
+xlabel('X')
+ylabel('Y')
 %title('infa formula - general sheet')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
 
 figure(2)
 contour(X, Y,infb)
+xlabel('X')
+ylabel('Y')
 %title('infb formula - general sheet')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
 
 figure(3)
 contour(X, Y,psi_a)
+xlabel('X')
+ylabel('Y')
 %title('infa discrete vortex approximation general sheet')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
 
 figure(4)
 contour(X, Y,psi_b);
+xlabel('X')
+ylabel('Y')
 %title('infb discrete vortex approximation general sheet')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')

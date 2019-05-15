@@ -9,7 +9,7 @@ ymin = -2;
 ymax = 2;
 ny = 41;
 del = 1.5;
-nv = 1000;
+nv = 100;
 for i = 1:nx
     
     for j = 1:ny
@@ -60,19 +60,33 @@ c = -0.15:0.05:0.15;
 figure(1)
 contour(X, Y,infa,c)
 %title('infa formula')
+xlabel('X')
+ylabel('Y')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
 
 figure(2)
 contour(X, Y,psi_a, c)
 %title('infa discrete vortex approximation')
+xlabel('X')
+ylabel('Y')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
 
 figure(3)
 contour(X, Y,infb, c)
 %title('infb formula')
+xlabel('X')
+ylabel('Y')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
 
 figure(4)
 contour(X, Y,psi_b, c);
 %title('infb discrete vortex approximation')
 colorbar
+h = colorbar;
+ylabel(h, 'Streamfunction Value')
