@@ -15,14 +15,14 @@ for i = 1:length(ReL)
         laminar = true;
         k = 1;
         f = 0;
-        disp([j ueL(j)])
-        while k <= (length(x) - 1) && laminar == true
+        %disp([j ueL(j)])
+        while k <= (length(x) - 1) && laminar 
             xa = x(k);
             xb = x(k+1);
             ua = ue(k);
             ub = ue(k+1);
             f = f + ueintbit(x(k), ue(k), x(k+1), ue(k+1));
-            theta2 = (0.45/ReL(i)) * (ue(i))^(-6) * f;
+            theta2 = (0.45/ReL(i)) * (ue(k+1))^(-6) * f;
             theta(i,j,k+1) = sqrt(theta2);
             
             %Transition calculation and check
@@ -32,9 +32,8 @@ for i = 1:length(ReL)
             He = laminar_He(H);
             if log(Rethet) >= (18.4*He - 21.74)
                 laminar = false;
-                disp('Reynolds number, ueL = ')
-                disp([ReL(i)/1000000])
-                disp(ueL(j))
+                disp(ReL(i)/(10^6));
+                disp(ueL(j));
                 disp([x(k), Rethet/1000]);
                 %disp(k)
             end
