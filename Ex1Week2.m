@@ -22,7 +22,7 @@ end
 
 %Calculating Blasius solution
 
-thetab = (0.664/(ReL^0.5)) * x.^(0.5);
+thetab = (0.664/(ReL^0.5)) * x.^(0.5); %x. multiplies by every element in the array
 
 figure(1)
 plot(x, theta)
