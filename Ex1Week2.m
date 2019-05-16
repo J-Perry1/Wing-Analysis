@@ -25,10 +25,10 @@ end
 thetab = (0.664/(ReL^0.5)) * x.^(0.5); %x. multiplies by every element in the array
 
 figure(1)
-plot(x, theta)
+plot(x, theta, '-.')
 hold on
 plot(x, thetab)
-xlabel('x/L')
-ylabel('theta/L')
-legend('Thwaites solution', 'Blasius solution')
+xlabel('$x/L$','Interpreter','Latex')
+ylabel('$\theta/L$','Interpreter','Latex')
+legend('Thwaites'' Solution', 'Blasius'' Solution')
 legend('show')
