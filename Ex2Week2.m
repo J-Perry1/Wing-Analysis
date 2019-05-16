@@ -34,7 +34,7 @@ for i = 1:length(ReL)
                 laminar = false;
                 disp(ReL(i)/(10^6));
                 disp(ueL(j));
-                disp([x(k), Rethet/1000]);
+                disp([x(k+1), Rethet/1000]);
                 %disp(k)
             end
             
@@ -54,11 +54,11 @@ for i = 1:n
     theta32(i) = theta(3,2,i);
     theta33(i) = theta(3,3,i);
 end
-plot(x, theta11)
+plot(x, theta21)
 hold on
-plot(x, theta12)
+plot(x, theta22)
 hold on
-plot(x, theta13)
+plot(x, theta23)
 legend('0.8', '1', '1.2')
 
 
