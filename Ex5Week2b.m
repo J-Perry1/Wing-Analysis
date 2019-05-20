@@ -4,12 +4,12 @@ clear all
 global Re ue0 duedx;
 
 U = 1;
-grad_table = [-0.3, -0.6, -0.9];
+Re_table = [10^6, 10^7, 10^8];
 
-for i = 1:length(grad_table)
-    Re = 10^7;
+for i = 1:length(Re_table)
+    Re = Re_table(i);
     ue0 = U;
-    duedx = grad_table(i);
+    duedx = -0.6
     control = 0;
     x0 = 0.01;
     thick0(1) = 0.037*x0*(Re*x0)^(-1/5);
@@ -40,25 +40,26 @@ He(He==0) = NaN;
 theta(theta==0) = NaN;
 deltae(deltae==0) = NaN;
 figure(1)
-plot(x(:,1), He(:,1), 'DisplayName', 'Grad = -0.3')
+plot(x(:,1), He(:,1), 'DisplayName', 'Re = 10^6')
 hold on
-plot(x(:,2), He(:,2), 'DisplayName', 'Grad = -0.6')
+plot(x(:,2), He(:,2), 'DisplayName', 'Re = 10^7')
 hold on
-plot(x(:,3), He(:,3), 'DisplayName', 'Grad = -0.9')
+plot(x(:,3), He(:,3), 'DisplayName', 'Re = 10^8')
 xlabel('x/L')
 ylabel('He')
 ylim([0, 2.5])
 yline(1.46, 'DisplayName', 'Separation Point')
-title('Plot of He against x/L for ReL = 10e7')
+title('Plot of He against x/L for grad = -0.6')
 legend('show')
 
 figure(2)
-plot(x(:,1), theta(:,1), 'DisplayName', 'Theta for grad = -0.3')
+%plot(x(:,1), theta(:,1), 'DisplayName', 'Theta for Re = 10^6')
 hold on
-plot(x(:,2), theta(:,2), 'DisplayName', 'Theta for grad = -0.6')
+plot(x(:,2), theta(:,2), 'DisplayName', 'Theta for Re = 10^7 and grad = -0.6')
 hold on
-plot(x(:,3), theta(:,3), 'DisplayName', 'Theta for grad = -0.9')
+%plot(x(:,3), theta(:,3), 'DisplayName', 'Theta for Re = 10^8')
 hold on
+plot(x(:,2), deltae(:,2), 'DisplayName', 'DeltaE for Re = 10^7 and grad = -0.6')
 % plot(x(:,1), deltae(:,1), 'DisplayName', 'DeltaE for grad = -0.3')
 % hold on
 % plot(x(:,2), deltae(:,2), 'DisplayName', 'DeltaE for grad = -0.6')
