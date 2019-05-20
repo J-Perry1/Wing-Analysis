@@ -10,6 +10,6 @@ for i = 1:np+1
 end
 
 for i = 1:np-1 
-    rhsvec(i) = psifs(i+1) - psifs(i);
+    rhsvec(i) = psifs(i) - psifs(i+1);
 end
 end
