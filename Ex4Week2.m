@@ -3,7 +3,7 @@ close all
 clear all
 global Re ue0 duedx;
 
-Re = 5*10^6;
+Re = 10^7;
 ue0 = 1;
 duedx = 0;
 
@@ -29,4 +29,6 @@ plot(x,theta,'DisplayName','DE Solution')
 hold on
 plot(x,theta7,'DisplayName','1/7th Power Law')
 plot(x,theta9,'DisplayName','1/9th Power Law')
+xlabel('x/L')
+ylabel('theta/L')
 legend
