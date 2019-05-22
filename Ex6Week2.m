@@ -3,7 +3,7 @@ n = 101;
 x = linspace(0, 1, n);
 Re = 10^6;
 ue0 = 1;
-duedx = -0.9;
+duedx = -0.488;
 for i = 1:length(x)
     
     ue(i) = ue0 + duedx * x(i);
@@ -17,6 +17,7 @@ itr = 0;
 its = 0;
 int = 0;
 ils = 0;
+H(1) = 0;
 theta(1) = 0;
 while i <= (length(x) - 1) && laminar
     xa = x(i);
@@ -30,8 +31,8 @@ while i <= (length(x) - 1) && laminar
     %Transition calculation and check
     Rethet = Re * ue(i+1) * theta(i+1);
     m = -Re * (theta(i+1))^2 * duedx;
-    H = thwaites_lookup(m);
-    He = laminar_He(H);
+    H(i+1) = thwaites_lookup(m);
+    He(i+1) = laminar_He(H(i+1));
     if log(Rethet) >= (18.4*He - 21.74)
         laminar = false;
         int = i+1;
@@ -46,10 +47,9 @@ while i <= (length(x) - 1) && laminar
 end
 
 if ils ~= 0
-    He = 1.51509;
+    He(i) = 1.51509;
 end
-
-deltae(i) = He * theta(i) %As i = i + 1 at the end of the laminar loop
+deltae(i) = He(i) * theta(i) %As i = i + 1 at the end of the laminar loop
 %Setting values at the start of the panel
 %As i is now at the start of the panel
 i = i + 1;
@@ -81,12 +81,16 @@ end
 %Value of H at the turbulent separation from p.18
 H = 2.803;
 
-while i < length(x)
-    He(i) = NaN
-    theta(i) = theta(i-1) * (ue(i-1)/ue(i))^(H+2) 
-    
-    i = i +1;
+while i <= length(x)
+    He(i) = NaN;
+    theta(i) = theta(i-1) * (ue(i-1)/ue(i))^(H+2); 
+    i = i + 1;
 end
+
+figure(1)
+size(x)
+size(He)
+plot(x, He)
 
 disp(['turbulent = ' num2str(int)])
 disp(['laminar separation = ' num2str(ils)])
