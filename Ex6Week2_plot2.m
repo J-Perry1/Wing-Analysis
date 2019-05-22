@@ -3,14 +3,14 @@ close all
 global Re ue0 duedx
 n = 101;
 x = linspace(0, 1, n);
-Retab = [10^6, 10^7];
+Retab = [10^4, 10^5, 10^6];
 ue0 = 1; 
 %0.3803/0.3804 is the one for Re = 10^5
 control = 0;
 
 for j = 1:length(Retab)
     ue0 = 1;
-    duedx = 0;
+    duedx = -0.25;
     Re = Retab(j);
     for i = 1:length(x)
 
@@ -114,9 +114,11 @@ for j = 1:length(Retab)
 end
 
     figure(1)
-    plot(x, theta(1,:), 'DisplayName', 'Re = 10^6')
+    plot(x, theta(1,:), 'DisplayName', 'Re = 10^4')
     hold on
-    plot(x, theta(2,:), 'DisplayName', 'Re = 10^7')
+    plot(x, theta(2,:), 'DisplayName', 'Re = 10^5')
+    hold on
+    plot(x, theta(3,:), 'DisplayName', 'Re = 10^6')
     if its(1) ~= 0
         hold on
         scatter(x(its(1)), theta_ts(1), 'DisplayName', 'Turbulent separation', 'Marker', 'o', 'MarkerFaceColor', 'r')
@@ -124,7 +126,12 @@ end
     
     if its(2) ~= 0
         hold on
-        scatter(x(its(2)), theta_ts(2), 'DisplayName', 'Turbulent separation', 'Marker', 'o', 'MarkerFaceColor', 'r')
+        scatter(x(its(2)), theta_ts(2), 'Marker', 'o', 'MarkerFaceColor', 'r')
+    end
+    
+    if its(3) ~= 0
+        hold on
+        scatter(x(its(3)), theta_ts(3), 'Marker', 'o', 'MarkerFaceColor', 'r')
     end
     
     if ils(1) ~= 0
@@ -134,17 +141,28 @@ end
     
     if ils(2) ~= 0
         hold on
-        scatter(x(ils(2)), theta_ls(2), 'DisplayName', 'Laminar separation', 'Marker', 'o', 'MarkerFaceColor', 'b')
+        h_special_1 = scatter(x(ils(2)), theta_ls(2), 'Marker', 'o', 'MarkerFaceColor', 'b')
+        set( get( get( h_special_1, 'Annotation'), 'LegendInformation' ), 'IconDisplayStyle', 'off' );
+    end
+    
+    if ils(3) ~= 0
+        hold on
+        scatter(x(ils(3)), theta_ls(3), 'Marker', 'o', 'MarkerFaceColor', 'b')
     end
     
     if int(1) ~= 0
         hold on
-        scatter(x(int(1)), theta_nt(1), 'DisplayName', 'Natural transition', 'Marker', 'o', 'MarkerFaceColor', 'c')
+        scatter(x(int(1)), theta_nt(1), 'Marker', 'o', 'MarkerFaceColor', 'c')
     end
     
     if int(2) ~= 0
         hold on
-        scatter(x(int(2)), theta_nt(2), 'DisplayName', 'Natural transition', 'Marker', 'o', 'MarkerFaceColor', 'c')
+        scatter(x(int(2)), theta_nt(2),'Marker', 'o', 'MarkerFaceColor', 'c')
+    end
+    
+    if int(3) ~= 0
+        hold on
+        scatter(x(int(3)), theta_nt(3), 'DisplayName', 'Natural transition', 'Marker', 'o', 'MarkerFaceColor', 'c')
     end
     
     if itr(1) ~= 0
@@ -157,15 +175,23 @@ end
         hold on
         scatter(x(itr(2)), theta_tr(2), 'DisplayName', 'Turbulent reattachment', 'Marker', 'o', 'MarkerFaceColor', 'm')
     end
+    
+    if itr(3) ~= 0
+        hold on
+        scatter(x(itr(3)), theta_tr(3), 'DisplayName', 'Turbulent reattachment', 'Marker', 'o', 'MarkerFaceColor', 'm')
+    end
     xlabel('x/L')
     ylabel('theta/L')
+    ylim([0 0.022])
     legend
     
     %Here starts plot 2
     figure(2)
-    plot(x, He(1,:), 'DisplayName', 'Re = 10^6')
+    plot(x, He(1,:), 'DisplayName', 'Re = 10^4')
     hold on
-    plot(x, He(2,:), 'DisplayName', 'Re = 10^7')
+    plot(x, He(2,:), 'DisplayName', 'Re = 10^5')
+    hold on
+    plot(x, He(3,:), 'DisplayName', 'Re = 10^6')
     if its(1) ~= 0
         hold on
         scatter(x(its(1)), He_ts(1), 'DisplayName', 'Turbulent separation', 'Marker', 'o', 'MarkerFaceColor', 'r')
@@ -176,6 +202,11 @@ end
         scatter(x(its(2)), He_ts(2),  'DisplayName', 'Turbulent separation', 'Marker', 'o', 'MarkerFaceColor', 'r')
     end
     
+    if its(3) ~= 0
+        hold on
+        scatter(x(its(3)), He_ts(3),  'DisplayName', 'Turbulent separation', 'Marker', 'o', 'MarkerFaceColor', 'r')
+    end
+    
     if ils(1) ~= 0
         hold on
         scatter(x(ils(1)), He_ls(1),  'DisplayName', 'Laminar separation', 'Marker', 'o', 'MarkerFaceColor', 'b')
@@ -183,7 +214,13 @@ end
     
     if ils(2) ~= 0
         hold on
-        scatter(x(ils(2)), He_ls(2),  'DisplayName', 'Laminar separation', 'Marker', 'o', 'MarkerFaceColor', 'b')
+        h_special_2 = scatter(x(ils(2)), He_ls(2), 'Marker', 'o', 'MarkerFaceColor', 'b')
+        set( get( get( h_special_2, 'Annotation'), 'LegendInformation' ), 'IconDisplayStyle', 'off' );
+    end
+    
+    if ils(3) ~= 0
+        hold on
+        scatter(x(ils(3)), He_ls(3),  'DisplayName', 'Laminar separation', 'Marker', 'o', 'MarkerFaceColor', 'b')
     end
     
     if int(1) ~= 0
@@ -191,9 +228,15 @@ end
         scatter(x(int(1)), He_nt(1),  'DisplayName', 'Natural transition', 'Marker', 'o', 'MarkerFaceColor', 'c')
     end
     
+    
     if int(2) ~= 0
         hold on
         scatter(x(int(2)), He_nt(2), 'DisplayName', 'Natural transition', 'Marker', 'o', 'MarkerFaceColor', 'c')
+    end
+    
+    if int(3) ~= 0
+        hold on
+        scatter(x(int(3)), He_nt(3),  'DisplayName', 'Natural transition', 'Marker', 'o', 'MarkerFaceColor', 'c')
     end
     
     if itr(1) ~= 0
@@ -207,6 +250,12 @@ end
         scatter(x(itr(2)), He_tr(2), 'DisplayName', 'Turbulent reattachment', 'Marker', 'o', 'MarkerFaceColor', 'm')
     end
     
+    if itr(3) ~= 0
+        hold on
+        scatter(x(itr(3)), He_tr(3), 'DisplayName', 'Turbulent reattachment', 'Marker', 'o', 'MarkerFaceColor', 'm')
+    end
+    
     xlabel('x/L')
     ylabel('He')
-    legend
+    ylim([0 2])
+    legend('Location', 'SouthEast')
