@@ -6,7 +6,7 @@ x = linspace(0, 1, n);
 Re = 10^5;
 ue0 = 1;
 gradients = linspace(0, -0.8, 1000); 
-%-0.382  %0.382 is the one for Re = 10^5
+%0.3803/0.3804 is the one for Re = 10^5
 control = 1;
 
 for j = 1:length(gradients)
@@ -35,7 +35,7 @@ for j = 1:length(gradients)
         ub = ue(i);
         f = f + ueintbit(x(i-1), ue(i-1), x(i), ue(i));
         theta2 = (0.45/Re) * (ue(i))^(-6) * f;
-        theta(i+1) = sqrt(theta2);
+        theta(i) = sqrt(theta2);
 
         %Transition calculation and check
         Rethet = Re * ue(i) * theta(i);
