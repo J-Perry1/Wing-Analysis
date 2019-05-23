@@ -29,6 +29,6 @@ plot(x,theta,'DisplayName','DE Solution')
 hold on
 plot(x,theta7,'DisplayName','1/7th Power Law')
 plot(x,theta9,'DisplayName','1/9th Power Law')
-xlabel('x/L')
-ylabel('theta/L')
+xlabel('$x/L$','Interpreter','Latex')
+ylabel('$\theta/L$','Interpreter','Latex')
 legend

@@ -30,7 +30,7 @@ for i = 1:length(grad_table)
         He(j, i) = deltae(j, i)/theta(j, i);
             if He(j, i) < 1.46 && control == 0 && x(j, i) > 0.05
                 xsep(i) = x(j, i);
-                control = 1
+                control = 1;
             end
     end
     
@@ -49,7 +49,7 @@ xlabel('x/L')
 ylabel('He')
 ylim([0, 2.5])
 yline(1.46, 'DisplayName', 'Separation Point')
-title('Plot of He against x/L for ReL = 10e7')
+%title('Plot of He against x/L for ReL = 10e7')
 legend('show')
 
 figure(2)

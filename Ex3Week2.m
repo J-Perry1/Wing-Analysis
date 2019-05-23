@@ -2,7 +2,7 @@ clear all
 close all
 %This script plots theta for a flat plate using the solution described in
 %the handout (Ex1 week 2) as well as compares it with the Blasius method
-ReL = linspace(10e3, 10e7, 100000); 
+ReL = linspace(10e3, 10e7, 50000); 
 ueL = [0.5];
 n = 101;
 theta = zeros(length(ReL), length(ueL), n);
@@ -65,4 +65,5 @@ for i = 1:length(ReL)
 end
 
 disp(['Surpass ReL = ' num2str(Re_transsep)])
+
 

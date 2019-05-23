@@ -5,7 +5,7 @@ n = 101;
 x = linspace(0, 1, n);
 Re = 10^5;
 ue0 = 1;
-duedx = -0.3803  %0.3803/0.3804 is the one for Re = 10^5
+duedx = -0.3803;  %0.3803/0.3804 is the one for Re = 10^5
 for i = 1:length(x)
     
     ue(i) = ue0 + duedx * x(i);
@@ -14,11 +14,11 @@ end
 laminar = true;
 i = 1;
 f = 0;
-He(1) = 1.57258;
-itr = 0;
-its = 0;
-int = 0;
-ils = 0;
+He(1) = 1.57258; %corresponding to blasius boundary layer
+itr = 0; %turbulent reattachment 
+its = 0; %turbulent separation
+int = 0; %natural transition
+ils = 0; %laminar separation
 H(1) = 0;
 theta(1) = 0;
 while i <= (length(x) - 1) && laminar
@@ -42,13 +42,13 @@ while i <= (length(x) - 1) && laminar
     elseif m >= 0.09
         
         laminar = false;
-        ils = i;
+        ils = i; %laminar separation has occurred 
     end
 
 end
 
 if ils ~= 0
-    He(i) = 1.51509;
+    He(i) = 1.51509;%set to lamianr separation value
 end
 deltae(i) = He(i) * theta(i);
 %Setting values at the start of the panel
@@ -71,7 +71,7 @@ while its == 0 && i <= length(x) - 1
     if ils ~= 0 && He(i) > 1.58 && itr == 0
         itr = i;
     end
-    
+    %test for turbulent separation
     if its == 0 && He(i) < 1.46
         its = i;
     end
@@ -81,7 +81,8 @@ end
 %Value of H at the turbulent separation from p.18
 H = 2.803;
 
-while i <= length(x) - 1
+%calculate theta values for turbulently separated boundary layer
+while i <= length(x) - 1 
     i = i + 1;
     He(i) = NaN;
     theta(i) = theta(i-1) * (ue(i-1)/ue(i))^(H+2); 

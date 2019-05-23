@@ -7,6 +7,7 @@ ReL = (10^6) * [1, 10, 100];
 ueL = [0.8, 1, 1.2];
 n = 101;
 theta = zeros(length(ReL), length(ueL), n);
+p = 1;
 %Initialising first point
 for i = 1:length(ReL)
     for j = 1:length(ueL)
@@ -35,6 +36,9 @@ for i = 1:length(ReL)
                 disp(ReL(i)/(10^6));
                 disp(ueL(j));
                 disp([x(k+1), Rethet/1000]);
+                tab_x(p) = x(k+1);
+                tab_Rethet(p) = Rethet/1000;
+                p = p+1;
                 %disp(k)
             end
             
@@ -61,6 +65,11 @@ hold on
 plot(x, theta23)
 legend('0.8', '1', '1.2')
 
+
+tab_x = transpose(tab_x);
+tab_Rethet = transpose(tab_Rethet);
+
+T = table(tab_x,tab_Rethet);
 
 %Calculating Blasius solution
 

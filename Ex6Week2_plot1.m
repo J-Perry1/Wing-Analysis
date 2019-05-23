@@ -157,8 +157,8 @@ end
         hold on
         scatter(x(itr(2)), theta_tr(2), 'DisplayName', 'Turbulent reattachment', 'Marker', 'o', 'MarkerFaceColor', 'm')
     end
-    xlabel('x/L')
-    ylabel('theta/L')
+    xlabel('$x/L$','Interpreter','Latex')
+    ylabel('$\theta /L$','Interpreter','Latex')
     legend
     
     %Here starts plot 2
