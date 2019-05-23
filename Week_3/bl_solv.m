@@ -16,22 +16,22 @@ ils = 0; %laminar separation
 H(1) = 0;
 
 %initialisation
-cp_init = 1;
-ue(1) = 0;
     %i = i + 1;
     xa = 0;
     xb = x(1);
-    ua = 0;
+    ua = 0; %initial value of ue is 0 at stagnation point 
     ub = sqrt(1-cp(1));
     f = f + ueintbit(xa, ua, xb, ub);
     theta2 = (0.45/Re) * (ub)^(-6) * f;
     theta(1) = sqrt(theta2);
     
     %Transition calculation and check not necessary? 
+    
+    ue(i) = sqrt(1-cp(i)); %set value of ue for first panel for i = 1
  
 while i <= (length(x) - 1) && laminar
     i = i + 1;
-    ue(i) = sqrt(1-cp(i)); %give velocity from pressure coeffient 
+    ue(i) = sqrt(1-cp(i)); %give velocity from pressure coeffient
     duedx = (ue(i)-ue(i-1))/(x(i)-x(i-1)); %velocity gradient 
     xa = x(i-1);
     xb = x(i);
